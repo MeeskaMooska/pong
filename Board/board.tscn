@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://dm0uvrdsk23as"]
+
+[ext_resource type="Script" path="res://Board/Player.gd" id="1_cknr7"]
+[ext_resource type="Texture2D" uid="uid://teqrcshq5tyq" path="res://Assets/player_paddle.png" id="2_ebmej"]
+[ext_resource type="Texture2D" uid="uid://b1ewiqc6ab3ya" path="res://Assets/opponent_paddle.png" id="3_7cupq"]
+[ext_resource type="Script" path="res://Board/Opponent.gd" id="3_wgrvh"]
+[ext_resource type="Texture2D" uid="uid://dtmnl5jrcdsa" path="res://Assets/ball.png" id="5_0s4nb"]
+[ext_resource type="Script" path="res://Board/Ball.gd" id="5_fkx77"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bfomq"]
+size = Vector2(26.0426, 34.0946)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8fs5w"]
+size = Vector2(22, 54)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k6buy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0imtf"]
+size = Vector2(1298, 10)
+
+[node name="Board" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+
+[node name="PlayerPaddle" type="CharacterBody2D" parent="."]
+position = Vector2(72, 180)
+scale = Vector2(2, 2)
+script = ExtResource("1_cknr7")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerPaddle"]
+texture = ExtResource("2_ebmej")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerPaddle"]
+position = Vector2(0, 0.178322)
+scale = Vector2(0.84477, 1.6027)
+shape = SubResource("RectangleShape2D_bfomq")
+
+[node name="OpponentPaddle" type="CharacterBody2D" parent="."]
+position = Vector2(1202, 337)
+scale = Vector2(2, 2)
+script = ExtResource("3_wgrvh")
+
+[node name="Sprite2D" type="Sprite2D" parent="OpponentPaddle"]
+texture = ExtResource("3_7cupq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OpponentPaddle"]
+shape = SubResource("RectangleShape2D_8fs5w")
+
+[node name="Ball" type="CharacterBody2D" parent="."]
+position = Vector2(626, 337)
+script = ExtResource("5_fkx77")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+texture = ExtResource("5_0s4nb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+scale = Vector2(1.2364, 1.2364)
+shape = SubResource("CircleShape2D_k6buy")
+
+[node name="WallTop" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallTop"]
+position = Vector2(639, -5)
+shape = SubResource("RectangleShape2D_0imtf")
+
+[node name="WallBottom" type="StaticBody2D" parent="."]
+position = Vector2(-5.65281, 720.44)
+scale = Vector2(1.03456, -4.25175e-05)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallBottom"]
+position = Vector2(639, -5)
+shape = SubResource("RectangleShape2D_0imtf")

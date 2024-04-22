@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://dw51mdxoickt6"]
+
+[ext_resource type="Script" path="res://Main Menu/main.gd" id="1_xk4tf"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_xk4tf")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasGroup"]
+custom_minimum_size = Vector2(4000, 4000)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2000.0
+offset_top = -2000.0
+offset_right = 2000.0
+offset_bottom = 2000.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0646965, 0.0646965, 0.0646965, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="start_game_button" type="Button" parent="."]
+offset_left = 564.833
+offset_top = 371.342
+offset_right = 674.833
+offset_bottom = 402.342
+scale = Vector2(1.32895, 1.32315)
+text = "Start Game"
+
+[node name="quit_game_button" type="Button" parent="."]
+offset_left = 644.202
+offset_top = 464.998
+offset_right = 686.202
+offset_bottom = 495.998
+scale = Vector2(1.57806, 1.06963)
+text = "Quit
+"
+
+[connection signal="pressed" from="start_game_button" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="quit_game_button" to="." method="_on_quit_game_button_pressed"]
